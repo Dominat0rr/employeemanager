@@ -14,22 +14,22 @@ export class EmployeeService {
     constructor(private http: HttpClient) { }
 
     public getEmployees(): Observable<Employee[]> {
-        return this.http.get<Employee[]>(`${this.apiServerUrl}/api/empoyee/all`);
+        return this.http.get<Employee[]>(`${this.apiServerUrl}/api/employee/all`);
     }
 
     public getEmployee(id: number): Observable<Employee> {
-        return this.http.get<Employee>(`${this.apiServerUrl}/api/empoyee/find/${id}`);
+        return this.http.get<Employee>(`${this.apiServerUrl}/api/employee/find/${id}`);
     }
 
     public addEmployees(employee: Employee): Observable<Employee> {
-        return this.http.post<Employee>(`${this.apiServerUrl}/api/empoyee/add`, employee);
+        return this.http.post<Employee>(`${this.apiServerUrl}/api/employee/add`, employee);
     }
 
     public updateEmployees(employee: Employee): Observable<Employee> {
-        return this.http.put<Employee>(`${this.apiServerUrl}/api/empoyee/update`, employee);
+        return this.http.put<Employee>(`${this.apiServerUrl}/api/employee/update`, employee);
     }
 
     public deleteEmployees(id: number): Observable<void> {
-        return this.http.delete<void>(`${this.apiServerUrl}/api/empoyee/delete/${id}`);
+        return this.http.delete<void>(`${this.apiServerUrl}/api/employee/delete/${id}`);
     }
 }
