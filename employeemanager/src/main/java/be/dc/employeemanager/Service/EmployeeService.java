@@ -40,9 +40,9 @@ public class EmployeeService {
     }
 
     public void delete(Long id) {
-//        Employee employee = repository.findById(id).get();
-//        repository.delete(employee);
+        Employee employee = repository.findById(id).get();
+        repository.delete(employee);
 
-        repository.deleteEmployeeById(id);
+        //repository.deleteEmployeeById(id);
     }
 }
