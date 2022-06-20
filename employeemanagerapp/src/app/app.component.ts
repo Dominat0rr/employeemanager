@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   title = 'employeemanagerapp';
   public employees: Employee[] | undefined;
   public editEmployee: Employee | undefined;
+  public deleteEmployee: Employee | undefined;
 
   constructor(private employeeService: EmployeeService) { }
 
@@ -46,6 +47,7 @@ export class AppComponent implements OnInit {
       button.setAttribute("data-target", "#updateEmployeeModal");
     }
     else if (mode === "delete") {
+      this.deleteEmployee = employee;
       button.setAttribute("data-target", "#deleteEmployeeModal");
     }
 
@@ -59,6 +61,21 @@ export class AppComponent implements OnInit {
       (response: Employee) => {
         console.log(response);
         this.getEmployees();
+        addForm.reset();
+        
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+        addForm.reset();
+      }
+    );
+  }
+
+  public onUpdateEmployee(employee: Employee): void {
+    this.employeeService.addEmployee(employee).subscribe(
+      (response: Employee) => {
+        console.log(response);
+        this.getEmployees();
         
       },
       (error: HttpErrorResponse) => {
@@ -67,9 +84,9 @@ export class AppComponent implements OnInit {
     );
   }
 
-  public onUpdateEmployee(employee: Employee): void {
-    this.employeeService.addEmployee(employee).subscribe(
-      (response: Employee) => {
+  public onDeleteEmployee(id: number | undefined): void {
+    this.employeeService.deleteEmployee(id!).subscribe(
+      (response: void) => {
         console.log(response);
         this.getEmployees();
         
